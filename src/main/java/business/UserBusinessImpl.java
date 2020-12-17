@@ -17,6 +17,12 @@ public class UserBusinessImpl implements UserBusiness{
 			int i = dao.Save(u);
 		return i;
 	}
+
+
+	public boolean authenticateLogInDetails(String email, String password) throws Exception {
+		return dao.findLogInMatch(email, password);
+	}
+
 	
 	
 }

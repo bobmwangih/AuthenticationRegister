@@ -20,11 +20,7 @@ public class Registration {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password =request.getParameter("password");
-		
-		System.out.println(name);
-		System.out.println(email);
-		System.out.println(password);
-		
+				
 		ConfigurableApplicationContext cp = new ClassPathXmlApplicationContext("resource/applicationContext.xml");
 		UserBusiness ub =(UserBusiness) cp.getBean("bizLogic");
 		int i = ub.createUser(new User(name,email,password));

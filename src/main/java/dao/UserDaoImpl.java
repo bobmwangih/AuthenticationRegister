@@ -2,7 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
 import javax.sql.DataSource;
 
 import models.User;
@@ -29,11 +29,17 @@ public class UserDaoImpl implements UserDao {
 		return i;
 	}
 
-	public User findBy(String name) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean findLogInMatch(String email, String password) throws Exception {
+		Connection cn = ds.getConnection();
+		PreparedStatement ps = cn.prepareStatement("select * from user where email =? and password =?");
+		ps.setString(1,email);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		cn.close();
+		return rs.next();
 	}
-	
+
+
 	
 	
 }
