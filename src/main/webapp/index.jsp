@@ -4,7 +4,7 @@
 	<table>
 		<tr>
 			<td>
-				<form method="GET" action="register">
+				<form method="POST" action="register">
 					<table>
 						<tr>
 							<td>Name:</td>

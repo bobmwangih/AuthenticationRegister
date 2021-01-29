@@ -18,10 +18,10 @@ public class UserDaoImpl implements UserDao {
 	public int Save(User u) throws Exception {
 		//open connection to save
 		Connection cn = ds.getConnection();
-		PreparedStatement ps = cn.prepareStatement("insert into user(name,email,password) values(?,?,?)");
-		ps.setString(1, u.getName());
-		ps.setString(2, u.getEmail());
-		ps.setString(3, u.getPassword());
+		PreparedStatement ps = cn.prepareStatement("insert into user(name,email,password) values('"+u.getName()+"','"+u.getEmail()+"','"+u.getPassword()+"')");
+		//ps.setString(1, u.getName());
+		//ps.setString(2, u.getEmail());
+		//ps.setString(3, u.getPassword());
 		int i =ps.executeUpdate();
 		System.out.println(i);
 		cn.close();
@@ -31,9 +31,9 @@ public class UserDaoImpl implements UserDao {
 
 	public boolean findLogInMatch(String email, String password) throws Exception {
 		Connection cn = ds.getConnection();
-		PreparedStatement ps = cn.prepareStatement("select * from user where email =? and password =?");
-		ps.setString(1,email);
-		ps.setString(2, password);
+		PreparedStatement ps = cn.prepareStatement("select * from user where email ='"+ email +"' and password ='"+password+"'");
+		//ps.setString(1,email);
+		//ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		cn.close();
 		return rs.next();
